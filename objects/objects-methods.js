@@ -21,9 +21,15 @@ let restaurant = {
     // console.log(canFit);
 
     if (canFit >= numberRqSeats) {
-      return `There is room available for ${numberRqSeats} people`;
+      return (
+        canFit >= numberRqSeats
+        // `There is room available for ${numberRqSeats} people`
+      );
     } else {
-      return `There is not enough room for ${numberRqSeats} people`;
+      return (
+        canFit >= numberRqSeats
+        // `There is not enough room for ${numberRqSeats} people`
+      );
     }
   },
   seatNewParty: function(toBeSeated) {
@@ -57,9 +63,12 @@ let restaurant = {
   },
   currentRestaurantStatus: function() {
     // return `${this.name}, ${this.guestCapacity}, ${this.guestCount}`;
-    return `The restaurant ${this.name} can seat ${
-      this.guestCapacity
-    } people. The current number of diners is ${this.guestCount}`;
+
+    let remainingSpaces = this.guestCapacity - this.guestCount;
+
+    return `The restaurant ${this.name} can seat ${this.guestCapacity} people. 
+    The current number of diners is ${this.guestCount}
+    The restaurant can currently seat ${remainingSpaces} people`;
   }
 };
 
@@ -69,6 +78,10 @@ restaurant.seatNewParty(72);
 console.log(restaurant.checkAvailability(4));
 
 console.log(restaurant.removeParty(5));
+
+console.log(restaurant.checkAvailability(4));
+
+console.log(restaurant.currentRestaurantStatus());
 
 // console.log(restaurant.seatNewParty(50));
 
