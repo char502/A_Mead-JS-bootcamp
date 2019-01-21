@@ -2,8 +2,8 @@
 // letter grade
 // percentage
 
-let studentsScore = function(studentsScore, totalPossible) {
-  let score = (studentsScore / totalPossible) * 100;
+const studentsScore = function(studentsScore, totalPossible) {
+  const score = (studentsScore / totalPossible) * 100;
   let grade;
   let grammar;
 
@@ -27,5 +27,5 @@ let studentsScore = function(studentsScore, totalPossible) {
   return `You got ${grammar} ${grade} grade! (${score}%)`;
 };
 
-let result = studentsScore(18, 20);
+const result = studentsScore(18, 20);
 console.log(result);
