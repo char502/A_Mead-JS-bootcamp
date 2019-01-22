@@ -36,6 +36,21 @@ const sortTodos = function(todos) {
 sortTodos(todos);
 console.log(todos);
 
+// const sortTodos = function(todos) {
+//   todos.sort(function(a, b) {
+//     if (!a.completed && b.completed) {
+//       return -1;
+//     } else if (!b.completed && a.completed) {
+//       return 1;
+//     } else {
+//       return 0;
+//     }
+//   });
+// };
+
+// sortTodos(todos);
+// console.log(todos);
+
 // -1 (if a should come first)
 // 1 (if b should come first)
 // 0 the order doesn't need to be changed
