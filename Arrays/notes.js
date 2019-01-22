@@ -15,6 +15,47 @@ const notes = [
   }
 ];
 
+const sortNotes = function(notes) {
+  notes.sort(function(a, b) {
+    if (a.title.toLowerCase() < b.title.toLowerCase()) {
+      return -1;
+    } else if (b.title.toLowerCase() < a.title.toLowerCase()) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+};
+
+// -1 (if a should come first)
+// 1 (if b should come first)
+// 0 the order doesn't need to be changed
+// ====================================================================
+// console.log('a' < 'b') // returns true (a comes before b)
+// console.log('March' < 'January') // returns false ('j' comes first)
+// console.log('a' < 'A') // false - capital letters always come first
+// ====================================================================
+// ====== This can be addressed by converting everything to lowercase before doing a comparison ================
+
+sortNotes(notes);
+console.log(notes);
+
+// ================================================================
+
+// const findFilteredText = function(notes, toFind) {
+//   return notes.filter(function(note) {
+//     const isTitleMatch = note.title
+//       .toLowerCase()
+//       .includes(toFind.toLowerCase());
+//     const isBodyMatch = note.body.toLowerCase().includes(toFind.toLowerCase());
+//     return isTitleMatch || isBodyMatch;
+//   });
+//     console.log(foundText);
+// };
+
+// const result = findFilteredText(notes, "Office");
+// console.log(findFilteredText(notes, "eating"));
+
 // console.log(
 //   notes.push({
 //     title: "some other note",
@@ -45,14 +86,14 @@ const notes = [
 
 // using find
 
-const findNote = function(notes, noteTitle) {
-  return notes.find(function(note, index) {
-    return note.title.toLowerCase() === noteTitle.toLowerCase();
-  });
-};
+// const findNote = function(notes, noteTitle) {
+//   return notes.find(function(note, index) {
+//     return note.title.toLowerCase() === noteTitle.toLowerCase();
+//   });
+// };
 
-const note = findNote(notes, "office modification");
-console.log(note);
+// const note = findNote(notes, "office modification");
+// console.log(note);
 
 // undefined if can't find what looking for
 

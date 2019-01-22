@@ -1,41 +1,78 @@
 let todos = [
   {
     text: "swim 3 lengths",
-    completed: false
+    completed: true
   },
   {
     text: "Eat dinner",
-    completed: true
+    completed: false
   },
   {
     text: "Go Fishing",
-    completed: false
-  },
-  {
-    text: "Go Running",
     completed: true
   },
   {
-    text: "Get some sleep",
+    text: "Go Running",
     completed: false
+  },
+  {
+    text: "Get some sleep",
+    completed: true
   }
 ];
 
-const deleteTodo = function(todos, itemToDelete) {
-  const todoIndex = todos.findIndex(function(todo) {
-    return todo.text.toLowerCase() === itemToDelete.toLowerCase();
+const sortTodos = function(todos) {
+  todos.sort(function(a, b) {
+    if (!a.completed && b.completed) {
+      return -1;
+    } else if (!b.completed && a.completed) {
+      return 1;
+    } else {
+      return 0;
+    }
   });
-
-  if (todoIndex > -1) {
-    console.log(`${todos[todoIndex].text} deleted!!`);
-    todos.splice(todoIndex, 1);
-  } else {
-    console.log("Nothing found to delete!!");
-  }
 };
 
-deleteTodo(todos, "awdw");
+sortTodos(todos);
 console.log(todos);
+
+// -1 (if a should come first)
+// 1 (if b should come first)
+// 0 the order doesn't need to be changed
+// ====================================================================
+// console.log('a' < 'b') // returns true (a comes before b)
+// console.log('March' < 'January') // returns false ('j' comes first)
+// console.log('a' < 'A') // false - capital letters always come first
+// ====================================================================
+// ====== This can be addressed by converting everything to lowercase before doing a comparison ================
+
+// ==============================================================
+
+// const todosToComplete = function(todos) {
+//   return todos.filter(function(todo) {
+//     return !todo.completed;
+//   });
+// };
+
+// console.log(todosToComplete(todos));
+
+// ==============================================================
+
+// const deleteTodo = function(todos, itemToDelete) {
+//   const todoIndex = todos.findIndex(function(todo) {
+//     return todo.text.toLowerCase() === itemToDelete.toLowerCase();
+//   });
+
+//   if (todoIndex > -1) {
+//     console.log(`${todos[todoIndex].text} deleted!!`);
+//     todos.splice(todoIndex, 1);
+//   } else {
+//     console.log("Nothing found to delete!!");
+//   }
+// };
+
+// deleteTodo(todos, "awdw");
+// console.log(todos);
 
 // ====================================================
 
