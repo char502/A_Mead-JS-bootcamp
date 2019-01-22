@@ -37,3 +37,5 @@ const setName = function() {
 };
 setName(); // this would run
 console.log(firstName); // this won't work as firstNAme is inaccessible
+
+// ======================================================
