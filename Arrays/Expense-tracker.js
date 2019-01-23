@@ -16,26 +16,24 @@ const account = {
   },
   getAccountSummary: function() {
     let sumExpenses = 0;
+    let sumIncome = 0;
+    let balance = 0;
+
     this.expenses.forEach(function(item) {
       sumExpenses += item.amount;
     });
 
-    let sumIncome = 0;
     this.income.forEach(function(item) {
-      sumIncome = sumIncome + item.income;
+      sumIncome += item.income;
     });
 
-    let balance = sumIncome - sumExpenses;
+    balance = sumIncome - sumExpenses;
 
     return `${
       this.name
     } has a balance of £${balance}, £${sumIncome} in income and £${sumExpenses} in expenses`;
   }
 };
-
-// how much in expenses
-// how much in income
-// account balance
 
 // forEach mutates the current array
 
@@ -45,7 +43,7 @@ account.addExpense("Water Bill", 150);
 account.addExpense("Electricity", 200);
 account.addIncome("Salary", 1800);
 account.addIncome("Side Project", 500);
-console.log(account);
+// console.log(account);
 console.log(account.getAccountSummary());
 
 // let addExpense = function (account, amount) {
