@@ -14,3 +14,8 @@ ps.forEach(function(item) {
   //   console.log(item.textContent);
   //   item.remove();
 });
+
+// Add a new element
+const newParagraph = document.createElement("p");
+newParagraph.textContent = "This is a new element from JS";
+document.querySelector("body").appendChild(newParagraph);
