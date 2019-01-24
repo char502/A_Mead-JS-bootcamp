@@ -7,8 +7,16 @@
     <input id="search-text" type="text" placeholder="Filter todos" />
     <div id="notes"></div>
     <button id="create-note">Create Note</button>
-    <button id="remove-all">Remove All Notes</button>
-
+    <!-- <button id="remove-all">Remove All Notes</button> -->
+    <form id="name-form">
+      <input type="text" placeholder="First Name" name="firstName" />
+      <button>Submit</button>
+    </form>
     <script src="notes-app.js"></script>
   </body>
 </html>
+
+<!-- 
+  - name(attribute in forms) = somthing you put on your fields when they are inside a form 
+  - this makes it easy to access those field values when the form actually gets submitted
+-->

@@ -34,7 +34,6 @@ const renderTodos = function(todos, filters) {
   const todosToComplete = filteredSearch.filter(function(todo) {
     return !todo.completed;
   });
-  console.log(todosToComplete);
 
   document.querySelector("#searched-todos").innerHTML = "";
 
@@ -46,7 +45,6 @@ const renderTodos = function(todos, filters) {
 
   // console.log(filteredSearch);
   filteredSearch.forEach(function(todo) {
-    console.log(todo.text);
     const todoItem = document.createElement("p");
     todoItem.textContent = todo.text;
     document.querySelector("#searched-todos").appendChild(todoItem);
@@ -56,15 +54,21 @@ const renderTodos = function(todos, filters) {
 renderTodos(todos, filters);
 
 // add todo input box
-document.querySelector("#new-todo").addEventListener("input", function(e) {
-  console.log(e.target.value);
-});
+document
+  .querySelector("#add-todo-form")
+  .addEventListener("submit", function(e) {
+    e.preventDefault();
+    const addedTodo = e.target.elements.addTodo.value;
+    todos.push({
+      text: addedTodo,
+      completed: false
+    });
+    console.log(todos);
+    renderTodos(todos, filters);
+    e.target.elements.addTodo.value = "";
+  });
 
 // add todo button
-document.querySelector("#add-todo").addEventListener("click", function(e) {
-  console.log("add todo button input", e);
-  e.target.textContent = "Button Clicked";
-});
 
 // Input for search/filter box
 document.querySelector("#search-text").addEventListener("input", function(e) {

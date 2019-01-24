@@ -44,17 +44,35 @@ document.querySelector("#create-note").addEventListener("click", function(e) {
   e.target.textContent = "The button was clicked";
 });
 
-document.querySelector("#remove-all").addEventListener("click", function() {
-  console.log("Remove All Notes Clicked");
-  document.querySelectorAll(".note").forEach(function(note) {
-    note.remove();
-  });
-});
+// document.querySelector("#remove-all").addEventListener("click", function() {
+//   console.log("Remove All Notes Clicked");
+//   document.querySelectorAll(".note").forEach(function(note) {
+//     note.remove();
+//   });
+// });
 
 document.querySelector("#search-text").addEventListener("input", function(e) {
   filters.searchText = e.target.value;
   renderNotes(notes, filters);
 });
+
+document.querySelector("#name-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+  console.log(e.target.elements.firstName.value);
+  e.target.elements.firstName.value = "";
+});
+
+// USE 'SUBMIT' where it does not make sense to update on the fly
+// i.e. filters - on the fly (as the user types)
+// form submit - not on the fly (want form data completed before finish)
+// ====================================================================
+// e.target - gets us to DOM element for the form
+// elements - allows access to all the fields that we've set up
+// (i.e. in this case, the input box have set up)
+// allows us to target it by name
+// =============================
+// The target event property returns the element that triggered the event. The target property gets the element on which the event originally occurred, opposed to the currentTarget property, which always refers to the element whose event listener triggered the event.
+// ==========================================================================
 
 // using 'input' event on event listener will fire on every single character change
 // allows filtering in real time
