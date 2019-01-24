@@ -13,6 +13,31 @@ const notes = [
   }
 ];
 
+// an object to store all the latest filters
+const filters = {
+  searchText: ""
+};
+
+console.log(filters);
+
+const renderNotes = function(notes, filters) {
+  const filteredNotes = notes.filter(function(note) {
+    return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
+  });
+  // console.log(filteredNotes);
+  // let title = notes.title
+  // let body = notes.body
+  document.querySelector("#notes").innerHTML = "";
+
+  filteredNotes.forEach(function(note) {
+    const p = document.createElement("p");
+    p.textContent = note.title;
+    document.querySelector("#notes").appendChild(p);
+  });
+};
+
+renderNotes(notes, filters);
+
 document.querySelector("#create-note").addEventListener("click", function(e) {
   console.log("Create Note Clicked");
   console.log(e);
@@ -27,10 +52,11 @@ document.querySelector("#remove-all").addEventListener("click", function() {
 });
 
 document.querySelector("#search-text").addEventListener("input", function(e) {
-  console.log(e.target.value);
+  filters.searchText = e.target.value;
+  renderNotes(notes, filters);
 });
 
-// using input event on event listener will fire on every single character change
+// using 'input' event on event listener will fire on every single character change
 // allows filtering in real time
 
 // =========================================================================
