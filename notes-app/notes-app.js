@@ -56,11 +56,17 @@ document.querySelector("#search-text").addEventListener("input", function(e) {
   renderNotes(notes, filters);
 });
 
-document.querySelector("#name-form").addEventListener("submit", function(e) {
-  e.preventDefault();
-  console.log(e.target.elements.firstName.value);
-  e.target.elements.firstName.value = "";
+document.querySelector("#for-fun").addEventListener("change", function(e) {
+  console.log(e.target.checked);
 });
+
+// ====================================================================
+
+// document.querySelector("#name-form").addEventListener("submit", function(e) {
+//   e.preventDefault();
+//   console.log(e.target.elements.firstName.value);
+//   e.target.elements.firstName.value = "";
+// });
 
 // USE 'SUBMIT' where it does not make sense to update on the fly
 // i.e. filters - on the fly (as the user types)
