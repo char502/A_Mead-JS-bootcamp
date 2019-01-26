@@ -4,7 +4,13 @@
   <body>
     <h1>Todo List App</h1>
     <input id="search-text" type="text" placeholder="Filter todos" />
+
+    <label id="hide-completed">
+      Hide Completed: <input type="checkbox" />
+    </label>
+
     <div id="searched-todos"></div>
+
     <form id="add-todo-form">
       <input
         id="add-todo-input"
@@ -14,6 +20,8 @@
       />
       <button>Add Todo</button>
     </form>
+    <br />
+
     <script src="todo-app.js"></script>
   </body>
 </html>

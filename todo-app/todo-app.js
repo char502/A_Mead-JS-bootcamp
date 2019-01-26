@@ -22,9 +22,10 @@ let todos = [
 ];
 
 const filters = {
-  searchText: ""
+  searchText: "",
+  hideCompleted: false
 };
-console.log(filters);
+// console.log(filters);
 
 const renderTodos = function(todos, filters) {
   const filteredSearch = todos.filter(function(todo) {
@@ -38,17 +39,27 @@ const renderTodos = function(todos, filters) {
   document.querySelector("#searched-todos").innerHTML = "";
 
   const displayNotComplete = document.createElement("h2");
+
   displayNotComplete.textContent = `You have ${
     todosToComplete.length
   } todos left to complete`;
   document.querySelector("#searched-todos").appendChild(displayNotComplete);
 
   // console.log(filteredSearch);
-  filteredSearch.forEach(function(todo) {
-    const todoItem = document.createElement("p");
-    todoItem.textContent = todo.text;
-    document.querySelector("#searched-todos").appendChild(todoItem);
-  });
+  // console.log(todosToComplete);
+  if (!filters.hideCompleted) {
+    filteredSearch.forEach(function(todo) {
+      const todoItem = document.createElement("p");
+      todoItem.textContent = todo.text;
+      document.querySelector("#searched-todos").appendChild(todoItem);
+    });
+  } else {
+    todosToComplete.forEach(function(todo) {
+      const toComplete = document.createElement("p");
+      toComplete.textContent = todo.text;
+      document.querySelector("#searched-todos").appendChild(toComplete);
+    });
+  }
 };
 
 renderTodos(todos, filters);
@@ -76,3 +87,19 @@ document.querySelector("#search-text").addEventListener("input", function(e) {
   filters.searchText = e.target.value;
   renderTodos(todos, filters);
 });
+
+// const hideCompleted = function(todos) {
+document
+  .querySelector("#hide-completed")
+  .addEventListener("change", function(e) {
+    // const hideCompleted = todos.filter(function(todo) {
+    //   return !todo.completed;
+    filters.hideCompleted = e.target.checked;
+    renderTodos(todos, filters);
+  });
+// console.log(hideCompleted);
+// filters.hideCompleted = e.target.checked;
+// renderTodos(todos, filters);
+// return hideCompleted;
+
+// };
