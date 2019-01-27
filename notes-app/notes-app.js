@@ -20,6 +20,19 @@ const filters = {
 
 console.log(filters);
 
+// ====== Local Storage ===========================
+// localStorage.setItem("location", "Reading");
+// 'Location' is the 'key' for this piece of data
+// can also use for updating local storage
+// ================================================
+// console.log(localStorage.getItem("location"));
+// ================================================
+// localStorage.removeItem("location"); // Takes key for data trying to remove
+// ================================================
+localStorage.clear(); // Will delete everything, no matter what the key is
+// ================================================
+// localStorage - only supports string
+
 const renderNotes = function(notes, filters) {
   const filteredNotes = notes.filter(function(note) {
     return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
@@ -56,9 +69,15 @@ document.querySelector("#search-text").addEventListener("input", function(e) {
   renderNotes(notes, filters);
 });
 
-document.querySelector("#for-fun").addEventListener("change", function(e) {
-  console.log(e.target.checked);
+document.querySelector("#filter-by").addEventListener("change", function(e) {
+  console.log(e.target.value);
 });
+
+// ==================================================
+// For checkbox example
+// document.querySelector("#for-fun").addEventListener("change", function(e) {
+//   console.log(e.target.checked);
+// });
 
 // ====================================================================
 
