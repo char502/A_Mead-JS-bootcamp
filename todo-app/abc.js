@@ -29,8 +29,21 @@ const filters = {
 
 const renderTodos = function(todos, filters) {
   const filteredSearch = todos.filter(function(todo) {
-    return todo.text.toLowerCase().includes(filters.searchText.toLowerCase());
+    const searchTextMatch = todo.text
+      .toLowerCase()
+      .includes(filters.searchText.toLowerCase());
+    const hideCompletedMatch = !filters.hideCompleted || !todo.completed;
+
+    return searchTextMatch && hideCompletedMatch;
   });
+
+  console.log(filteredSearch);
+
+  // alternative solution to filtering via the checkbox
+  // ======================================================
+  // filteredTodos = filteredTodos.filter(function(todo) {
+  //   return !filters.hideCompleted || !todo.completed;
+  // });
 
   const todosToComplete = filteredSearch.filter(function(todo) {
     return !todo.completed;
@@ -45,19 +58,25 @@ const renderTodos = function(todos, filters) {
   } todos left to complete`;
   document.querySelector("#searched-todos").appendChild(displayNotComplete);
 
-  if (!filters.hideCompleted) {
-    filteredSearch.forEach(function(todo) {
-      const todoItem = document.createElement("p");
-      todoItem.textContent = todo.text;
-      document.querySelector("#searched-todos").appendChild(todoItem);
-    });
-  } else {
-    todosToComplete.forEach(function(todo) {
-      const toComplete = document.createElement("p");
-      toComplete.textContent = todo.text;
-      document.querySelector("#searched-todos").appendChild(toComplete);
-    });
-  }
+  filteredSearch.forEach(function(todo) {
+    const todoItem = document.createElement("p");
+    todoItem.textContent = todo.text;
+    document.querySelector("#searched-todos").appendChild(todoItem);
+  });
+
+  // if (!filters.hideCompleted) {
+  //   filteredSearch.forEach(function(todo) {
+  //     const todoItem = document.createElement("p");
+  //     todoItem.textContent = todo.text;
+  //     document.querySelector("#searched-todos").appendChild(todoItem);
+  //   });
+  // } else {
+  //   todosToComplete.forEach(function(todo) {
+  //     const toComplete = document.createElement("p");
+  //     toComplete.textContent = todo.text;
+  //     document.querySelector("#searched-todos").appendChild(toComplete);
+  //   });
+  // }
 };
 
 renderTodos(todos, filters);

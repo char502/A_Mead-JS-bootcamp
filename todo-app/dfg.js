@@ -45,6 +45,12 @@ const renderTodos = function(todos, filters) {
   } todos left to complete`;
   document.querySelector("#searched-todos").appendChild(displayNotComplete);
 
+  filteredSearch.forEach(function(todo) {
+    const todoItem = document.createElement("p");
+    todoItem.textContent = todo.text;
+    document.querySelector("#searched-todos").appendChild(todoItem);
+  });
+
   if (!filters.hideCompleted) {
     filteredSearch.forEach(function(todo) {
       const todoItem = document.createElement("p");
