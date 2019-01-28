@@ -1,19 +1,8 @@
-let notes = [];
+const notes = getSavedNotes();
 
 const filters = {
   searchText: ""
 };
-
-console.log(filters);
-
-const notesJSON = localStorage.getItem("notes");
-
-if (notesJSON !== null) {
-  notes = JSON.parse(notesJSON);
-}
-
-console.log(notes);
-// console.log(notesJSON);
 
 const renderNotes = function(notes, filters) {
   const filteredNotes = notes.filter(function(note) {
