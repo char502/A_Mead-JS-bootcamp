@@ -96,6 +96,8 @@ document
     e.target.elements.addTodo.value = "";
   });
 
+// The target event property returns the element that triggered the event.The target property gets the element on which the event originally occurred, opposed to the currentTarget property, which always refers to the element whose event listener triggered the event.
+
 // add todo button
 
 // Input for search/filter box

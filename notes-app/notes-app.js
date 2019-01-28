@@ -4,26 +4,6 @@ const filters = {
   searchText: ""
 };
 
-const renderNotes = function(notes, filters) {
-  const filteredNotes = notes.filter(function(note) {
-    return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
-  });
-
-  document.querySelector("#notes").innerHTML = "";
-
-  filteredNotes.forEach(function(note) {
-    const p = document.createElement("p");
-
-    if (note.title.length > 0) {
-      p.textContent = note.title;
-    } else {
-      p.textContent = "Unnamed note";
-    }
-
-    document.querySelector("#notes").appendChild(p);
-  });
-};
-
 renderNotes(notes, filters);
 
 document.querySelector("#create-note").addEventListener("click", function(e) {
@@ -31,19 +11,10 @@ document.querySelector("#create-note").addEventListener("click", function(e) {
     title: "",
     body: ""
   });
-  localStorage.setItem("notes", JSON.stringify(notes));
+  saveNotes(notes); // this refactor makes it easier to switch storage mechanisms at a later date
   renderNotes(notes, filters);
-  // console.log("Create Note Clicked");
-  // console.log(e);
-  // e.target.textContent = "The button was clicked";
+  // e.target.textContent = "The button was clicked"; // to change the button text
 });
-
-// document.querySelector("#remove-all").addEventListener("click", function() {
-//   console.log("Remove All Notes Clicked");
-//   document.querySelectorAll(".note").forEach(function(note) {
-//     note.remove();
-//   });
-// });
 
 document.querySelector("#search-text").addEventListener("input", function(e) {
   filters.searchText = e.target.value;
@@ -54,13 +25,16 @@ document.querySelector("#filter-by").addEventListener("change", function(e) {
   console.log(e.target.value);
 });
 
-// ==================================================
+// =====================================================================
+// =====================================================================
+// =====================================================================
+// =====================================================================
 // For checkbox example
 // document.querySelector("#for-fun").addEventListener("change", function(e) {
 //   console.log(e.target.checked);
 // });
 
-// ====================================================================
+// =====================================================================
 
 // document.querySelector("#name-form").addEventListener("submit", function(e) {
 //   e.preventDefault();
@@ -92,6 +66,17 @@ document.querySelector("#filter-by").addEventListener("change", function(e) {
 // using 'change' in event listener, only works when click away
 
 // =========================================================================
+
+// Remove a note
+
+// document.querySelector("#remove-all").addEventListener("click", function() {
+//   console.log("Remove All Notes Clicked");
+//   document.querySelectorAll(".note").forEach(function(note) {
+//     note.remove();
+//   });
+// });
+
+// ====================================================================
 
 // e.target.value
 // use to access the data that the user typed in
