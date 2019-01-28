@@ -1,25 +1,10 @@
-let todos = [
-  {
-    text: "Swim 3 lengths",
-    completed: true
-  },
-  {
-    text: "Eat dinner",
-    completed: false
-  },
-  {
-    text: "Go Fishing",
-    completed: true
-  },
-  {
-    text: "Go Running",
-    completed: false
-  },
-  {
-    text: "Get some sleep",
-    completed: true
-  }
-];
+let todos = [];
+
+const todosJSON = localStorage.getItem("todos");
+
+if (todosJSON !== null) {
+  todos = JSON.parse(todosJSON);
+}
 
 const filters = {
   searchText: "",
@@ -77,12 +62,13 @@ document
       text: addedTodo,
       completed: false
     });
-    console.log(todos);
+    // console.log(todos);
+    localStorage.setItem("todos", JSON.stringify(todos));
     renderTodos(todos, filters);
     e.target.elements.addTodo.value = "";
   });
 
-// add todo button
+// The target event property returns the element that triggered the event.The target property gets the element on which the event originally occurred, opposed to the currentTarget property, which always refers to the element whose event listener triggered the event.
 
 // Input for search/filter box
 document.querySelector("#search-text").addEventListener("input", function(e) {

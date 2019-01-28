@@ -1,50 +1,36 @@
-const notes = [
-  {
-    title: "my next trip",
-    body: "I would like to go to Spain"
-  },
-  {
-    title: "Habits to work on",
-    body: "Exercise. Eating a bit better"
-  },
-  {
-    title: "Office Modification",
-    body: "Get a new Seat"
-  }
-];
+let notes = [];
 
-// an object to store all the latest filters
 const filters = {
   searchText: ""
 };
 
 console.log(filters);
 
-// ====== Local Storage ===========================
-// localStorage.setItem("location", "Reading");
-// 'Location' is the 'key' for this piece of data
-// can also use for updating local storage
-// ================================================
-// console.log(localStorage.getItem("location"));
-// ================================================
-// localStorage.removeItem("location"); // Takes key for data trying to remove
-// ================================================
-localStorage.clear(); // Will delete everything, no matter what the key is
-// ================================================
-// localStorage - only supports string
+const notesJSON = localStorage.getItem("notes");
+
+if (notesJSON !== null) {
+  notes = JSON.parse(notesJSON);
+}
+
+console.log(notes);
+// console.log(notesJSON);
 
 const renderNotes = function(notes, filters) {
   const filteredNotes = notes.filter(function(note) {
     return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
   });
-  // console.log(filteredNotes);
-  // let title = notes.title
-  // let body = notes.body
+
   document.querySelector("#notes").innerHTML = "";
 
   filteredNotes.forEach(function(note) {
     const p = document.createElement("p");
-    p.textContent = note.title;
+
+    if (note.title.length > 0) {
+      p.textContent = note.title;
+    } else {
+      p.textContent = "Unnamed note";
+    }
+
     document.querySelector("#notes").appendChild(p);
   });
 };
@@ -52,9 +38,15 @@ const renderNotes = function(notes, filters) {
 renderNotes(notes, filters);
 
 document.querySelector("#create-note").addEventListener("click", function(e) {
-  console.log("Create Note Clicked");
-  console.log(e);
-  e.target.textContent = "The button was clicked";
+  notes.push({
+    title: "",
+    body: ""
+  });
+  localStorage.setItem("notes", JSON.stringify(notes));
+  renderNotes(notes, filters);
+  // console.log("Create Note Clicked");
+  // console.log(e);
+  // e.target.textContent = "The button was clicked";
 });
 
 // document.querySelector("#remove-all").addEventListener("click", function() {
