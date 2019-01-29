@@ -19,19 +19,13 @@ const saveNotes = function(notes) {
 // Remove a note from the list
 const removeNote = function(id) {
   const noteIndex = notes.findIndex(function(note) {
-    return note.id === id
-  })
-
+    return note.id === id;
+  });
 
   if (noteIndex > -1) {
-    notes.splice(noteIndex, 1)
+    notes.splice(noteIndex, 1);
   }
-
-  // console.log(noteIndex)
-  // return remove(noteIndex)
-  // console.log(id)
-  
-}
+};
 
 // Generate the DOM structure for a note
 const generateNoteDOM = function(note) {
@@ -43,12 +37,13 @@ const generateNoteDOM = function(note) {
   button.textContent = "x";
   // button.setAttribute("id", "remove-button")
   noteEl.appendChild(button);
-  button.addEventListener('click', function() {
+  button.addEventListener("click", function() {
     // console.log(note)
 
     removeNote(note.id);
-    renderNotes(notes, filters)
-  })
+    saveNotes(notes);
+    renderNotes(notes, filters);
+  });
 
   // Setup the note title text
   if (note.title.length > 0) {
@@ -61,7 +56,6 @@ const generateNoteDOM = function(note) {
 
   return noteEl;
 };
-
 
 // Render application Notes
 const renderNotes = function(notes, filters) {

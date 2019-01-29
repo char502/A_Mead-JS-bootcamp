@@ -53,6 +53,16 @@ const renderTodos = function(todos, filters) {
   });
 };
 
+// Delete item from list on clicking the 'x' button
+const deleteButton = function(id) {
+  const todoIndex = todos.findIndex(function(todo) {
+    return todo.id === id;
+  });
+  if (todoIndex > -1) {
+    todos.splice(todoIndex, 1);
+  }
+};
+
 // Get the DOM elements for an individual note
 const generateTodoDOM = function(todo) {
   const divEl = document.createElement("div");
@@ -62,21 +72,24 @@ const generateTodoDOM = function(todo) {
 
   // Configuring the checkbox
   checkbox.setAttribute("type", "checkbox");
+  //sets the checkbox to true/false based on whether todo.completed is true/false
+  checkbox.checked = todo.completed;
   divEl.appendChild(checkbox);
 
   // Setup the todo text
   todoItem.textContent = todo.text;
   divEl.appendChild(todoItem);
 
-  // if (todo.text.length > 0) {
-  //   todoItem.textContent = todo.text;
-  // } else {
-  //   todoItem.textContent = "Unnamed todo";
-  // }
-
   // Setup the remove button
   removeButton.textContent = "x";
   divEl.appendChild(removeButton);
+
+  // Steps tp run when 'x' is clicked
+  removeButton.addEventListener("click", function() {
+    deleteButton(todo.id);
+    saveTodos(todos);
+    renderTodos(todos, filters);
+  });
 
   return divEl;
 };
