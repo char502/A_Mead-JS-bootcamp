@@ -16,17 +16,52 @@ const saveNotes = function(notes) {
   localStorage.setItem("notes", JSON.stringify(notes));
 };
 
+// Remove a note from the list
+const removeNote = function(id) {
+  const noteIndex = notes.findIndex(function(note) {
+    return note.id === id
+  })
+
+
+  if (noteIndex > -1) {
+    notes.splice(noteIndex, 1)
+  }
+
+  // console.log(noteIndex)
+  // return remove(noteIndex)
+  // console.log(id)
+  
+}
+
 // Generate the DOM structure for a note
 const generateNoteDOM = function(note) {
-  const p = document.createElement("p");
+  const noteEl = document.createElement("div");
+  const textEl = document.createElement("span");
+  const button = document.createElement("button");
 
+  // Setup the remove note button
+  button.textContent = "x";
+  // button.setAttribute("id", "remove-button")
+  noteEl.appendChild(button);
+  button.addEventListener('click', function() {
+    // console.log(note)
+
+    removeNote(note.id);
+    renderNotes(notes, filters)
+  })
+
+  // Setup the note title text
   if (note.title.length > 0) {
-    p.textContent = note.title;
+    textEl.textContent = note.title;
   } else {
-    p.textContent = "Unnamed note";
+    textEl.textContent = "Unnamed note";
   }
-  return p;
+
+  noteEl.appendChild(textEl);
+
+  return noteEl;
 };
+
 
 // Render application Notes
 const renderNotes = function(notes, filters) {

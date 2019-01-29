@@ -8,6 +8,7 @@ renderNotes(notes, filters);
 
 document.querySelector("#create-note").addEventListener("click", function(e) {
   notes.push({
+    id: uuidv4(),
     title: "",
     body: ""
   });
@@ -15,6 +16,21 @@ document.querySelector("#create-note").addEventListener("click", function(e) {
   renderNotes(notes, filters);
   // e.target.textContent = "The button was clicked"; // to change the button text
 });
+
+// for individual note remove buttons
+// document.querySelector('#remove-button').addEventListener('click', function(e){
+//   console.log('remove button clicked')
+//   console.log(e.target.id)
+
+//   notes.forEach(function(note){
+//     if (e.target.id === 'clicked' ) {
+//       note.remove()
+//     }
+//   })
+
+  
+// })
+
 
 document.querySelector("#search-text").addEventListener("input", function(e) {
   filters.searchText = e.target.value;

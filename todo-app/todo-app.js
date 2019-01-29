@@ -14,6 +14,7 @@ document
     e.preventDefault();
     const addedTodo = e.target.elements.addTodo.value;
     todos.push({
+      id: uuidv4(),
       text: addedTodo,
       completed: false
     });

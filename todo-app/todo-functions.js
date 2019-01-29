@@ -27,7 +27,8 @@ const renderTodos = function(todos, filters) {
     return searchTextMatch && hideCompletedMatch;
   });
 
-  console.log(filteredSearch);
+  //   console.log(filteredSearch);
+  //   console.log(todos);
 
   // alternative solution to filtering via the checkbox
   // ======================================================
@@ -54,14 +55,30 @@ const renderTodos = function(todos, filters) {
 
 // Get the DOM elements for an individual note
 const generateTodoDOM = function(todo) {
-  const todoItem = document.createElement("p");
+  const divEl = document.createElement("div");
+  const checkbox = document.createElement("input");
+  const todoItem = document.createElement("span");
+  const removeButton = document.createElement("button");
 
-  if (todo.text.length > 0) {
-    todoItem.textContent = todo.text;
-  } else {
-    todoItem.textContent = "Unnamed todo";
-  }
-  return todoItem;
+  // Configuring the checkbox
+  checkbox.setAttribute("type", "checkbox");
+  divEl.appendChild(checkbox);
+
+  // Setup the todo text
+  todoItem.textContent = todo.text;
+  divEl.appendChild(todoItem);
+
+  // if (todo.text.length > 0) {
+  //   todoItem.textContent = todo.text;
+  // } else {
+  //   todoItem.textContent = "Unnamed todo";
+  // }
+
+  // Setup the remove button
+  removeButton.textContent = "x";
+  divEl.appendChild(removeButton);
+
+  return divEl;
 };
 
 // Get the DOM elements for list summary
