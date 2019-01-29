@@ -63,6 +63,15 @@ const deleteButton = function(id) {
   }
 };
 
+const toggleCompleted = function(id) {
+  const todoToToggle = todos.findIndex(function(todo) {
+    return todo.id === id;
+  });
+  console.log(todos[todoToToggle]);
+  return (todos[todoToToggle].completed = !todos[todoToToggle].completed);
+  // !todos.completed;
+};
+
 // Get the DOM elements for an individual note
 const generateTodoDOM = function(todo) {
   const divEl = document.createElement("div");
@@ -75,6 +84,12 @@ const generateTodoDOM = function(todo) {
   //sets the checkbox to true/false based on whether todo.completed is true/false
   checkbox.checked = todo.completed;
   divEl.appendChild(checkbox);
+  // toggles the coompleted property of a todo from true to false
+  checkbox.addEventListener("change", function() {
+    toggleCompleted(todo.id);
+    saveTodos(todos);
+    renderTodos(todos, filters);
+  });
 
   // Setup the todo text
   todoItem.textContent = todo.text;
