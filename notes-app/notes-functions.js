@@ -1,5 +1,4 @@
 // read existing notes from localStorage
-
 const getSavedNotes = function() {
   const notesJSON = localStorage.getItem("notes");
 
