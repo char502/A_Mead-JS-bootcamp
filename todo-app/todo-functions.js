@@ -63,14 +63,22 @@ const deleteButton = function(id) {
   }
 };
 
-const toggleCompleted = function(id) {
-  const todoToToggle = todos.findIndex(function(todo) {
+// toogle the completed value for a given todo
+const toggleTodo = function(id) {
+  let todoUUID = todos.find(function(todo) {
     return todo.id === id;
   });
-  console.log(todos[todoToToggle]);
-  return (todos[todoToToggle].completed = !todos[todoToToggle].completed);
-  // !todos.completed;
+  if (todoUUID !== undefined) {
+    todoUUID.completed = !todoUUID.completed;
+  }
 };
+// const toggleTodo = function(id) {
+//   const todoToToggle = todos.findIndex(function(todo) {
+//     return todo.id === id;
+//   });
+//   // console.log(todoToToggle);
+//   todos[todoToToggle].completed = !todos[todoToToggle].completed;
+// };
 
 // Get the DOM elements for an individual note
 const generateTodoDOM = function(todo) {
@@ -82,11 +90,11 @@ const generateTodoDOM = function(todo) {
   // Configuring the checkbox
   checkbox.setAttribute("type", "checkbox");
   //sets the checkbox to true/false based on whether todo.completed is true/false
-  checkbox.checked = todo.completed;
+  checkbox.checked = todo.completed; // this caught me out!!
   divEl.appendChild(checkbox);
-  // toggles the coompleted property of a todo from true to false
+  // toggles the completed property of a todo from true to false
   checkbox.addEventListener("change", function() {
-    toggleCompleted(todo.id);
+    toggleTodo(todo.id);
     saveTodos(todos);
     renderTodos(todos, filters);
   });

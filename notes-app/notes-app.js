@@ -7,13 +7,14 @@ const filters = {
 renderNotes(notes, filters);
 
 document.querySelector("#create-note").addEventListener("click", function(e) {
+  const id = uuidv4();
   notes.push({
-    id: uuidv4(),
+    id: id,
     title: "",
     body: ""
   });
   saveNotes(notes); // this refactor makes it easier to switch storage mechanisms at a later date
-  renderNotes(notes, filters);
+  location.assign(`/edit.html#${id}`);
   // e.target.textContent = "The button was clicked"; // to change the button text
 });
 
@@ -28,9 +29,7 @@ document.querySelector("#create-note").addEventListener("click", function(e) {
 //     }
 //   })
 
-  
 // })
-
 
 document.querySelector("#search-text").addEventListener("input", function(e) {
   filters.searchText = e.target.value;
