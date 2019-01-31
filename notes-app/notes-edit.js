@@ -30,6 +30,8 @@ removeNoteButton.addEventListener("click", function(e) {
   location.assign("/index.html");
 });
 
+// By using the storage event on 'window' were able to watch for changes on local storage and respond accordingly
+// will not fire for current page - only duplicate pages (which is the desired behaviour)
 window.addEventListener("storage", function(e) {
   if (e.key === "notes") {
     notes = JSON.parse(e.newValue);
