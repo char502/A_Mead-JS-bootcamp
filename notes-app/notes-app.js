@@ -8,15 +8,25 @@ renderNotes(notes, filters);
 
 document.querySelector("#create-note").addEventListener("click", function(e) {
   const id = uuidv4();
+  const timeStamp = moment().valueOf();
+  // console.log(time);
   notes.push({
     id: id,
     title: "",
-    body: ""
+    body: "",
+    createdAt: timeStamp,
+    updatedAt: timeStamp
   });
   saveNotes(notes); // this refactor makes it easier to switch storage mechanisms at a later date
   location.assign(`/edit.html#${id}`);
   // e.target.textContent = "The button was clicked"; // to change the button text
 });
+
+// ====================================
+// const time = moment().valueOf();
+// format("ddd Do MMM, YYYY");
+// console.log(time);
+// ====================================
 
 // for individual note remove buttons
 // document.querySelector('#remove-button').addEventListener('click', function(e){
@@ -49,6 +59,8 @@ window.addEventListener("storage", function(e) {
     renderNotes(notes, filters);
   }
 });
+
+// ====================================================================
 
 // =====================================================================
 // =====================================================================

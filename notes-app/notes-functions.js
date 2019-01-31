@@ -14,6 +14,7 @@ const getSavedNotes = function() {
 // save the notes to localStorage
 const saveNotes = function(notes) {
   localStorage.setItem("notes", JSON.stringify(notes));
+  // notes.updatedAt = timeStamp;
 };
 
 // Remove a note from the list
