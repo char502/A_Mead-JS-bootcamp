@@ -19,18 +19,19 @@ if (note === undefined) {
 
 titleElement.value = note.title;
 bodyElement.value = note.body;
-// dateElement.textContent = `Last Edited: ${moment(note.updatedAt).fromNow()}`;
+dateElement.textContent = generateLastEdited(note.updatedAt);
 
 titleElement.addEventListener("input", function(e) {
   note.title = e.target.value;
   note.updatedAt = moment().valueOf();
-
+  dateElement.textContent = generateLastEdited(note.updatedAt);
   saveNotes(notes);
 });
 
 bodyElement.addEventListener("input", function(e) {
   note.body = e.target.value;
-
+  note.updatedAt = moment().valueOf();
+  dateElement.textContent = generateLastEdited(note.updatedAt);
   saveNotes(notes);
 });
 
@@ -55,7 +56,7 @@ window.addEventListener("storage", function(e) {
 
     titleElement.value = note.title;
     bodyElement.value = note.body;
-    dateElement;
+    dateElement.textContent = generateLastEdited(note.updatedAt);
   }
 });
 // The storage event fires when any of the data in local storage changes (this allows updating of what the user sees)
