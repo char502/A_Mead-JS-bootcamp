@@ -4,10 +4,8 @@ const bodyElement = document.querySelector("#note-body");
 const removeNoteButton = document.querySelector("#remove-note");
 const noteId = location.hash.substring(1);
 let notes = getSavedNotes();
-let note = notes.find(function(note) {
-  return note.id === noteId;
-});
 
+let note = notes.find((note) => note.id === noteId);
 if (note === undefined) {
   location.assign("/index.html");
 }
@@ -21,21 +19,21 @@ titleElement.value = note.title;
 bodyElement.value = note.body;
 dateElement.textContent = generateLastEdited(note.updatedAt);
 
-titleElement.addEventListener("input", function(e) {
+titleElement.addEventListener("input", (e) => {
   note.title = e.target.value;
   note.updatedAt = moment().valueOf();
   dateElement.textContent = generateLastEdited(note.updatedAt);
   saveNotes(notes);
 });
 
-bodyElement.addEventListener("input", function(e) {
+bodyElement.addEventListener("input", (e) => {
   note.body = e.target.value;
   note.updatedAt = moment().valueOf();
   dateElement.textContent = generateLastEdited(note.updatedAt);
   saveNotes(notes);
 });
 
-removeNoteButton.addEventListener("click", function(e) {
+removeNoteButton.addEventListener("click", () => {
   removeNote(note.id);
   saveNotes(notes);
   location.assign("/index.html");
@@ -43,12 +41,10 @@ removeNoteButton.addEventListener("click", function(e) {
 
 // By using the storage event on 'window' were able to watch for changes on local storage and respond accordingly
 // will not fire for current page - only duplicate pages (which is the desired behaviour)
-window.addEventListener("storage", function(e) {
+window.addEventListener("storage", (e) => {
   if (e.key === "notes") {
     notes = JSON.parse(e.newValue);
-    note = notes.find(function(note) {
-      return note.id === noteId;
-    });
+    note = notes.find((note) => note.id === noteId);
 
     if (note === undefined) {
       location.assign("/index.html");
