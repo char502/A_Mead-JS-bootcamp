@@ -61,8 +61,47 @@ const generateNoteDOM = function(note) {
   return noteEl;
 };
 
+// Sort notes by criteria
+const sortNotes = function(notes, sortBy) {
+  if (sortBy === "byEdited") {
+    // console.log("byCreated selected");
+    return notes.sort(function(a, b) {
+      if (a.updatedAt < b.updatedAt) {
+        return -1;
+      } else if (b.createdAt < a.createdAt) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+  } else if (sortBy === "byCreated") {
+    // console.log("byCreated selected");
+    return notes.sort(function(a, b) {
+      if (a.createdAt < b.createdAt) {
+        return -1;
+      } else if (b.createdAt < a.createdAt) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+  } else if (sortBy === "alphabetical") {
+    // console.log("alphabetical selected");
+    return notes.sort(function(a, b) {
+      if (a.title < b.title) {
+        return -1;
+      } else if (b.title < a.title) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+  }
+};
+
 // Render application Notes
 const renderNotes = function(notes, filters) {
+  notes = sortNotes(notes, filters.sortBy);
   const filteredNotes = notes.filter(function(note) {
     return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
   });
@@ -72,6 +111,8 @@ const renderNotes = function(notes, filters) {
   filteredNotes.forEach(function(note) {
     const p = generateNoteDOM(note);
     document.querySelector("#notes").appendChild(p);
+
+    // sortToggle(notes, filters);
   });
 };
 
