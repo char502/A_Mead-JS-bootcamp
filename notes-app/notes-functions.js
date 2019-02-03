@@ -66,9 +66,9 @@ const sortNotes = function(notes, sortBy) {
   if (sortBy === "byEdited") {
     // console.log("byCreated selected");
     return notes.sort(function(a, b) {
-      if (a.updatedAt < b.updatedAt) {
+      if (a.updatedAt > b.updatedAt) {
         return -1;
-      } else if (b.createdAt < a.createdAt) {
+      } else if (a.updatedAt < b.updatedAt) {
         return 1;
       } else {
         return 0;
@@ -77,9 +77,9 @@ const sortNotes = function(notes, sortBy) {
   } else if (sortBy === "byCreated") {
     // console.log("byCreated selected");
     return notes.sort(function(a, b) {
-      if (a.createdAt < b.createdAt) {
+      if (a.createdAt > b.createdAt) {
         return -1;
-      } else if (b.createdAt < a.createdAt) {
+      } else if (a.createdAt < b.createdAt) {
         return 1;
       } else {
         return 0;
@@ -87,10 +87,11 @@ const sortNotes = function(notes, sortBy) {
     });
   } else if (sortBy === "alphabetical") {
     // console.log("alphabetical selected");
+    // a comes before b (so is a < b)
     return notes.sort(function(a, b) {
-      if (a.title < b.title) {
+      if (a.title.toLowerCase() < b.title.toLowerCase()) {
         return -1;
-      } else if (b.title < a.title) {
+      } else if (b.title.toLowerCase() > a.title.toLowerCase()) {
         return 1;
       } else {
         return 0;
