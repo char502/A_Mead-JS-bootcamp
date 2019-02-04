@@ -3,6 +3,10 @@
 // percentage
 
 const studentsScore = function(studentsScore, totalPossible) {
+  if (typeof studentsScore !== "number" || typeof totalPossible !== "number") {
+    throw Error("studentsScore and totalPossible must be numbers");
+  }
+
   const score = (studentsScore / totalPossible) * 100;
   let grade;
   let grammar;
@@ -27,5 +31,9 @@ const studentsScore = function(studentsScore, totalPossible) {
   return `You got ${grammar} ${grade} grade! (${score}%)`;
 };
 
-const result = studentsScore(18, 20);
-console.log(result);
+try {
+  const result = studentsScore(true, 20);
+  console.log(result);
+} catch (e) {
+  console.log(e.message); // e.message allows you to access the throw message as per line 30 above
+}
