@@ -47,16 +47,17 @@ const me = new Person("Charlotte", "Ellwood", 35, ["karate", "biking"]); // cons
 // me.getBio = function() {
 //   return "This is fake!";
 // };
+// setting up the getBio property on the me instance
 // setting the getBio instance on the 'me' object instance does NOT change the getBio instance on otherPerson
-// js will first check on the 'me' object for getBio, if it finds it it will not go further up the prototype chain to find any other getBio properties
+// for the 'me' instance js will first check on the 'me' object for the getBio property, if it finds it it will not go further up the prototype chain to find any other getBio properties
 
 me.setName("Alexis Turner");
 console.log(me.getBio());
 
 const otherPerson = new Person("Thomas", "Ellwood", 8);
-Person.prototype.getBio = function() {
-  return "Testing Testing";
-};
+// Person.prototype.getBio = function() {
+//   return "Testing Testing";
+// };
 console.log(otherPerson.getBio());
 
 // =======================================================================

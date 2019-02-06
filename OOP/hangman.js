@@ -26,7 +26,7 @@ Hangman.prototype.getPuzzle = function() {
   return puzzle;
 };
 
-const game1 = new Hangman("Baby Shark gone home", ["b", "k", "h", "o"], 3);
+const game1 = new Hangman("Project x", ["j", "p"], 8);
 // const game1 = new Hangman("Gone Home", ["e", "t"], 5);
 const game2 = new Hangman("magazine", 0, 8);
 
