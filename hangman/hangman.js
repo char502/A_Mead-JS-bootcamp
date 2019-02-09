@@ -7,6 +7,42 @@ const Hangman = function(word, remainingGuesses) {
   this.status = "playing";
 };
 
+Hangman.prototype.playerStatus = function() {
+  let finished = true;
+
+  this.word.forEach((letter) => {
+    if (this.guessedLetters.includes(letter)) {
+    } else {
+      finished = false;
+    }
+  });
+  // console.log(this.remainingGuesses);
+  if (this.remainingGuesses === 0) {
+    this.status = "failed";
+  } else if (finished) {
+    this.status = "finished";
+  } else {
+    this.status = "playing";
+  }
+
+  console.log(this.status);
+};
+
+// Hangman.prototype.playerStatus = function() {
+//   const checkFinished = this.word.every((letter) => {
+//     return this.guessedLetters.includes(letter);
+//   });
+//   // console.log(this.remainingGuesses);
+//   if (this.remainingGuesses === 0) {
+//     this.status = "failed";
+//   }
+//   // console.log(checkFinished);
+//   if (checkFinished) {
+//     this.status = "finished";
+//   }
+//   console.log(this.status);
+// };
+
 // this prototype gets set to the Hangman prototype in the constructor (behind the scenes) which then makes the prototype available to all object instances created by the constructor
 Hangman.prototype.getPuzzle = function() {
   let puzzle = "";
@@ -37,20 +73,7 @@ Hangman.prototype.makeAGuess = function(guess) {
     this.remainingGuesses--;
     console.log(`You have ${this.remainingGuesses} guess(es) Remaining!`);
   }
-};
-
-Hangman.prototype.playerStatus = function() {
-  if (this.remainingGuesses === 0) {
-    this.status = "failed";
-  }
-
-  if (this.remainingGuesses !== 0) {
-    this.status = "finished";
-  }
-
-  // if () {
-  //   this.status = 'playing'
-  // }
+  this.playerStatus();
 };
 
 // failed - run out of remaining guesses

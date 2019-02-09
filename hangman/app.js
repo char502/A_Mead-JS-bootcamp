@@ -5,13 +5,13 @@ const game1 = new Hangman("Cat", 2);
 gameEl.textContent = game1.getPuzzle();
 guessesEl.textContent = game1.remainingGuesses;
 
+console.log(game1);
 window.addEventListener("keypress", function(e) {
   const guess = String.fromCharCode(e.charCode);
   game1.makeAGuess(guess);
   // To run again every time a guess is made and display changes to the screen
   gameEl.textContent = game1.getPuzzle();
   guessesEl.textContent = game1.remainingGuesses;
-  console.log(game1.playerStatus());
 });
 
 // const wordToGuess = document.createElement("span");
