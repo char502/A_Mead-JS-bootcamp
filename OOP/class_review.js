@@ -1,12 +1,4 @@
-// const Person = function(firstName, lastName, age, likes = []) {
-//   //   console.log(this);
-//   this.firstName = firstName;
-//   this.lastName = lastName;
-//   this.age = age;
-//   this.likes = likes;
-// };
-
-class PersonClass {
+class Person {
   constructor(firstName, lastName, age, likes = []) {
     this.firstName = firstName;
     this.lastName = lastName;
@@ -32,22 +24,10 @@ class PersonClass {
   }
 }
 
-const myPerson = new PersonClass("Charlotte", "Ellwood", 35, [
-  "karate",
-  "biking"
-]);
-
-console.log(myPerson);
-console.log(myPerson.getBio());
-
-const me = new PersonClass("Charlotte", "Ellwood", 35, ["karate", "biking"]); //
-
+const me = new Person("Charlotte", "Ellwood", 35, ["karate", "biking"]);
 me.setName("Alexis Turner");
 console.log(me.getBio());
 
-const otherPerson = new PersonClass("Thomas", "Ellwood", 8, [
-  "karate",
-  "avatar"
-]);
+const otherPerson = new Person("Thomas", "Ellwood", 8, ["karate", "avatar"]);
 
 console.log(otherPerson.getBio());
