@@ -8,15 +8,24 @@ const Hangman = function(word, remainingGuesses) {
 };
 
 Hangman.prototype.playerStatus = function() {
-  let finished = true;
+  const finished = this.word.every((letter) =>
+    this.guessedLetters.includes(letter)
+  );
+  // ==== ALTERNATIVE wAYS TO SOLVE ====
+  // const lettersUnguessed = this.word.filter((letter) => {
+  //   return !this.guessedLetters.includes(letter);
+  // });
 
-  this.word.forEach((letter) => {
-    if (this.guessedLetters.includes(letter)) {
-    } else {
-      finished = false;
-    }
-  });
-  // console.log(this.remainingGuesses);
+  // const finished = lettersUnguessed.length === 0;
+  // let finished = true;
+
+  // this.word.forEach((letter) => {
+  //   if (this.guessedLetters.includes(letter)) {
+  //   } else {
+  //     finished = false;
+  //   }
+  // });
+  // ====================================
   if (this.remainingGuesses === 0) {
     this.status = "failed";
   } else if (finished) {
@@ -71,11 +80,31 @@ Hangman.prototype.makeAGuess = function(guess) {
 
   if (isUnique && isBadGuess) {
     this.remainingGuesses--;
-    console.log(`You have ${this.remainingGuesses} guess(es) Remaining!`);
+    // console.log(`You have ${this.remainingGuesses} guess(es) Remaining!`);
+  }
+
+  if (this.status !== "playing" || this.remainingGuesses === 0) {
+    document.onkeydown = function() {
+      return false;
+    };
   }
   this.playerStatus();
+  // this.statusMessage();
 };
 
 // failed - run out of remaining guesses
 // finished - all the letters in 'word' exist somewhere in the guessed letters array (have guessed all the letters in the word playing with)
 // haven't failed and haven't finished
+
+Hangman.prototype.statusMessage = function() {
+  const wordInPlay = this.word.join("");
+  console.log(wordInPlay);
+
+  if (this.status === "playing") {
+    console.log(`You have ${this.remainingGuesses} guess(es) left`);
+  } else if (this.status === "finished") {
+    console.log("Great! You guessed the word");
+  } else if (this.status === "failed") {
+    console.log(`Nice try! The word was ${wordInPlay}`);
+  }
+};
