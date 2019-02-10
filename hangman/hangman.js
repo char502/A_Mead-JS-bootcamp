@@ -37,6 +37,18 @@ Hangman.prototype.playerStatus = function() {
   console.log(this.status);
 };
 
+Hangman.prototype.statusMessage = function() {
+  const wordInPlay = this.word.join("");
+
+  if (this.status === "playing") {
+    return `Guesses left: ${this.remainingGuesses}`;
+  } else if (this.status === "failed") {
+    return `Nice try! The word was: "${wordInPlay}"`;
+  } else if (this.status === "finished") {
+    return "Great! You guessed the word";
+  }
+};
+
 // Hangman.prototype.playerStatus = function() {
 //   const checkFinished = this.word.every((letter) => {
 //     return this.guessedLetters.includes(letter);
@@ -73,6 +85,11 @@ Hangman.prototype.makeAGuess = function(guess) {
   const isUnique = !this.guessedLetters.includes(guess);
   const isBadGuess = !this.word.includes(guess);
 
+  // return nothing if status is not playing (prevent the rest of the program from running)
+  if (this.status !== "playing") {
+    return;
+  }
+
   if (isUnique) {
     this.guessedLetters.push(guess);
     // console.log(`You have ${this.remainingGuesses} guesses Remaining!`);
@@ -83,11 +100,6 @@ Hangman.prototype.makeAGuess = function(guess) {
     // console.log(`You have ${this.remainingGuesses} guess(es) Remaining!`);
   }
 
-  if (this.status !== "playing" || this.remainingGuesses === 0) {
-    document.onkeydown = function() {
-      return false;
-    };
-  }
   this.playerStatus();
   // this.statusMessage();
 };
@@ -95,16 +107,3 @@ Hangman.prototype.makeAGuess = function(guess) {
 // failed - run out of remaining guesses
 // finished - all the letters in 'word' exist somewhere in the guessed letters array (have guessed all the letters in the word playing with)
 // haven't failed and haven't finished
-
-Hangman.prototype.statusMessage = function() {
-  const wordInPlay = this.word.join("");
-  console.log(wordInPlay);
-
-  if (this.status === "playing") {
-    console.log(`You have ${this.remainingGuesses} guess(es) left`);
-  } else if (this.status === "finished") {
-    console.log("Great! You guessed the word");
-  } else if (this.status === "failed") {
-    console.log(`Nice try! The word was ${wordInPlay}`);
-  }
-};
