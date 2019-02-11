@@ -20,7 +20,7 @@ class Hangman {
 
     console.log(this.status);
   }
-  statusMessage() {
+  get statusMessage() {
     const wordInPlay = this.word.join("");
 
     if (this.status === "playing") {
@@ -31,7 +31,7 @@ class Hangman {
       return "Great! You guessed the word";
     }
   }
-  getPuzzle() {
+  get puzzle() {
     let puzzle = "";
     // let newArr = [];
 

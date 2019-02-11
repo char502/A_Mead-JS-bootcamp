@@ -16,7 +16,7 @@ class Person {
     });
     return bio;
   }
-  setName(fullName) {
+  set fullName(fullName) {
     console.log(this);
     const names = fullName.split(" ");
     console.log(names);
@@ -24,6 +24,9 @@ class Person {
     console.log(this.firstName);
     this.lastName = names[1];
     console.log(this.lastName);
+  }
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
   }
 }
 
@@ -43,7 +46,7 @@ class Employee extends Person {
     this.position = position;
   }
   getBio() {
-    return `${this.firstName} ${this.lastName} is a ${this.position}`;
+    return `${this.fullName} is a ${this.position}`;
   }
   getYearsLeft() {
     return 65 - this.age;
@@ -75,11 +78,14 @@ class Student extends Person {
   }
 }
 
-const firstStudent = new Student("Sophie", "Ellwood", 5, 92, ["gymnastics"]);
+const firstStudent = new Employee("Sophie", "Ellwood", 5, "Teacher", [
+  "gymnastics"
+]);
+firstStudent.fullName = "Clancy Turner";
 
 console.log(firstStudent);
 console.log(firstStudent.getBio());
-console.log(firstStudent.updateGrade(-30));
-console.log(firstStudent.getBio());
-console.log(firstStudent.updateGrade(35));
-console.log(firstStudent.getBio());
+// console.log(firstStudent.updateGrade(-30));
+// console.log(firstStudent.getBio());
+// console.log(firstStudent.updateGrade(35));
+// console.log(firstStudent.getBio());
