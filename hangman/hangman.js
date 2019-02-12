@@ -6,8 +6,8 @@ class Hangman {
     this.status = "playing";
   }
   playerStatus() {
-    const finished = this.word.every((letter) =>
-      this.guessedLetters.includes(letter)
+    const finished = this.word.every(
+      (letter) => this.guessedLetters.includes(letter) || letter === " "
     );
 
     if (this.remainingGuesses === 0) {
@@ -42,7 +42,7 @@ class Hangman {
         puzzle += "*";
       }
     });
-
+    // console.log(puzzle);
     return puzzle;
   }
   makeAGuess(guess) {
