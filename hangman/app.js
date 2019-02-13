@@ -18,6 +18,7 @@ window.addEventListener("keypress", (e) => {
   guessesEl.textContent = game1.statusMessage;
 });
 
+// this code runs before have access to the data so undefined will print before the data prints
 getPuzzle((error, puzzle) => {
   if (error) {
     console.log(`Error: ${error}`);

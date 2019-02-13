@@ -38,7 +38,7 @@ Person.prototype.setName = function(fullName) {
 };
 
 // prototype property - prototype is an object
-// on this object we put everything we want to share with the instances of this constructor function i.e. if want all instances to access some sort of method, it get provided here
+// on this object we put everything we want to share with the instances of this constructor function i.e. if want all instances to access some sort of method, it gets provided here
 // usually it is methods (functions) that are put on the prototype object (although it can be any value you like - not that there is much purpose to that)
 // =================================================
 

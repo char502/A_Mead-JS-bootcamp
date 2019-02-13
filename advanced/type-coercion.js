@@ -2,7 +2,7 @@
 // == does not take type into account
 
 // console.log("5" + 5); // 55 - treats this as concatenation and converts first to a string
-// console.log("5" - 5); // 0 - 'coerces' first value to a string
+// console.log("5" - 5); // 0 - 'coerces' first value to a number
 // console.log("5" === 5); // false - checks type and value
 
 // console.log(typeof 123);
