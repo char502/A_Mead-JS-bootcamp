@@ -22,3 +22,18 @@ const getPuzzle = (callback) => {
   request.open("GET", "http://puzzle.mead.io/puzzle?wordCount=3");
   request.send();
 };
+
+const getPuzzleSync = () => {
+  const request = new XMLHttpRequest();
+  request.open("GET", "http://puzzle.mead.io/puzzle?wordCount=3", false);
+  request.send();
+
+  // Synchronout request - this won't run until the server returns with the data
+  // That's why don't have to reply on an event listener
+  if (request.readyState === 4 && request.status === 200) {
+    const data = JSON.parse(request.responseText);
+    return data.puzzle;
+  } else if (request.readyState === 4) {
+    throw new Error("Things did not go well");
+  }
+};
