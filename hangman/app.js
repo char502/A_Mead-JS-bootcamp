@@ -20,18 +20,21 @@ window.addEventListener("keypress", (e) => {
 
 // this code runs before have access to the data so undefined will print before the data prints
 // This is an example of asynchronous execution
-// getPuzzle((error, puzzle) => {
-//   if (error) {
-//     console.log(`Error: ${error}`);
-//   } else {
-//     console.log(puzzle);
-//   }
-// });
+getPuzzle("4", (error, puzzle) => {
+  if (error) {
+    console.log(`Error: ${error}`);
+  } else {
+    console.log(puzzle);
+  }
+});
 
-const puzzle = getPuzzleSync();
-console.log(puzzle);
-
-console.log("do something else");
+getCountryDetails("GB", (error, name) => {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(`country name is: ${name}`);
+  }
+});
 
 // Making a HTTP request
 

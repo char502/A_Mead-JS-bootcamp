@@ -4,7 +4,7 @@
 // have to wait for the callback function to fire first, then, and only then is access to the data available
 // so returning directly from getPuzzle is not going to be possible
 
-const getPuzzle = (callback) => {
+const getPuzzle = (wordCount, callback) => {
   const request = new XMLHttpRequest();
 
   request.addEventListener("readystatechange", (e) => {
@@ -19,21 +19,46 @@ const getPuzzle = (callback) => {
       callback("An Error has Taken place");
     }
   });
-  request.open("GET", "http://puzzle.mead.io/puzzle?wordCount=3");
+  request.open("GET", `http://puzzle.mead.io/puzzle?wordCount=${wordCount}`);
   request.send();
 };
 
-const getPuzzleSync = () => {
-  const request = new XMLHttpRequest();
-  request.open("GET", "http://puzzle.mead.io/puzzle?wordCount=3", false);
-  request.send();
+// ===============================================================
 
-  // Synchronout request - this won't run until the server returns with the data
-  // That's why don't have to reply on an event listener
-  if (request.readyState === 4 && request.status === 200) {
-    const data = JSON.parse(request.responseText);
-    return data.puzzle;
-  } else if (request.readyState === 4) {
-    throw new Error("Things did not go well");
-  }
+// Country code example
+// const countryCode = "LB";
+
+const getCountryDetails = (countryCode, callback) => {
+  const countryRequest = new XMLHttpRequest();
+  countryRequest.addEventListener("readystatechange", (e) => {
+    if (e.target.readyState === 4 && e.target.status === 200) {
+      const countryData = JSON.parse(e.target.responseText);
+      const name = countryData.find((country) => {
+        return country.alpha2Code === countryCode;
+      });
+      callback(undefined, name.name);
+    } else if (e.target.readyState === 4) {
+      callback("An error has taken place");
+    }
+  });
+  countryRequest.open("GET", "http://restcountries.eu/rest/v2/all");
+  countryRequest.send();
 };
+
+// ==================================================================
+// SYNCHRONOUS Request
+// ==================================================================
+// const getPuzzleSync = () => {
+//   const request = new XMLHttpRequest();
+//   request.open("GET", "http://puzzle.mead.io/slow-puzzle?wordCount=3", false);
+//   request.send();
+
+//   // Synchronous request - this won't run until the server returns with the data
+//   // That's why don't have to reply on an event listener
+//   if (request.readyState === 4 && request.status === 200) {
+//     const data = JSON.parse(request.responseText);
+//     return data.puzzle;
+//   } else if (request.readyState === 4) {
+//     throw new Error("Things did not go well");
+//   }
+// };
