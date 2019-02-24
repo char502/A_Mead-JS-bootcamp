@@ -4,6 +4,11 @@
 // have to wait for the callback function to fire first, then, and only then is access to the data available
 // so returning directly from getPuzzle is not going to be possible
 
+// =====================================================================================================
+// Why are open and send at the end?
+// The reason they are at the end is you don't know how fast the response will occur.  The ability to handle the response needs to be defined before you make the request incase it is almost an instantaneous response.  My understanding from the docs is open could be called before the eventListener without issue but you definitely want send() to be the last call as that will begin the server interaction.
+// =====================================================================================================
+
 const getPuzzle = (wordCount, callback) => {
   const request = new XMLHttpRequest();
 
