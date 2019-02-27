@@ -18,6 +18,8 @@ getDataCallback((err, data) => {
 });
 
 // Promise
+// The constructor function for promise takes an argument - which is a function
+// this gets called with two arguments (resolve and reject) which are functions themselves
 const getDataPromise = (data) =>
   new Promise((resolve, reject) => {
     // resolve and rejects are both functions themselves

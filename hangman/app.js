@@ -22,7 +22,14 @@ window.addEventListener("keypress", (e) => {
 // This is an example of asynchronous execution
 
 //Promise version
-getPuzzle("4");
+getPuzzle("4").then(
+  (puzzle) => {
+    console.log(puzzle);
+  },
+  (err) => {
+    console.log(`Error: ${err}`);
+  }
+);
 
 // Callback version
 // getPuzzle("4", (error, puzzle) => {
@@ -33,13 +40,22 @@ getPuzzle("4");
 //   }
 // });
 
-getCountryDetails("GB", (error, name) => {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log(`country name is: ${name}`);
+getCountryDetails("GB").then(
+  (name) => {
+    console.log(name);
+  },
+  (err) => {
+    console.log(`Error: ${err}`);
   }
-});
+);
+
+// getCountryDetails("GB", (error, name) => {
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log(`country name is: ${name}`);
+//   }
+// });
 
 // Making a HTTP request
 
