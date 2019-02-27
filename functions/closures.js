@@ -1,43 +1,43 @@
-// const createCounter = () => {
-//   let count = 0;
+const createCounter = () => {
+  let count = 0;
 
-//   return {
-//     increment() {
-//       count++;
-//     },
-//     decrement() {
-//       count--;
-//     },
-//     get() {
-//       return count;
-//     }
-//   };
-// };
+  return {
+    increment() {
+      count++;
+    },
+    decrement() {
+      count--;
+    },
+    get() {
+      return count;
+    }
+  };
+};
 
-// const counter = createCounter();
-// counter.increment();
-// counter.decrement();
-// counter.decrement();
-// console.log(counter.get());
+const counter = createCounter();
+counter.increment();
+counter.decrement();
+counter.decrement();
+console.log(counter.get());
 
 // ===================================================================
-// // Adder
+// Adder
 
-// // currying - the process of transforming a single function that takes a lot of arguments to multiple functions that take a subset of those arguments
+// currying - the process of transforming a single function that takes a lot of arguments to multiple functions that take a subset of those arguments
 
-// // uncurried version:
-// const add = (a, b) => a + b;
+// uncurried version:
+const add = (a, b) => a + b;
 
-// // curried version
-// // (useful when want to return a function with some sort of base value)
-// const createAdder = (a) => {
-//   return (b) => {
-//     return a + b;
-//   };
-// };
-// const add10 = createAdder(10); // call createAdder passing in base value of 10
-// console.log(add10(-2));
-// console.log(add10(20));
+// curried version
+// (useful when want to return a function with some sort of base value)
+const createAdder = (a) => {
+  return (b) => {
+    return a + b;
+  };
+};
+const add10 = createAdder(10); // call createAdder passing in base value of 10
+console.log(add10(-2));
+console.log(add10(20));
 // ===================================================================
 
 // Tipper
@@ -51,9 +51,12 @@ let createTipper = (tip) => {
 let Percent15Tip = createTipper(0.15);
 let Percent20Tip = createTipper(0.2);
 let Percent25Tip = createTipper(0.25);
-console.log(Percent15Tip(20));
-console.log(Percent20Tip(20));
-console.log(Percent25Tip(20));
+let Percent30Tip = createTipper(0.3);
+// console.log(Percent15Tip(20));
+// console.log(Percent25Tip(20));
+
+console.log(Percent20Tip(100));
+console.log(Percent30Tip(100));
 
 // ===================================================================
 // const myFunction = () => {
