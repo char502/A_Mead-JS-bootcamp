@@ -9,25 +9,24 @@
 // The reason they are at the end is you don't know how fast the response will occur.  The ability to handle the response needs to be defined before you make the request incase it is almost an instantaneous response.  My understanding from the docs is open could be called before the eventListener without issue but you definitely want send() to be the last call as that will begin the server interaction.
 // =====================================================================================================
 
-const getPuzzle = (wordCount) =>
-  new Promise((resolve, reject) => {
-    const request = new XMLHttpRequest();
+const getPuzzle = (wordCount, callback) => {
+  const request = new XMLHttpRequest();
 
-    request.addEventListener("readystatechange", (e) => {
-      if (e.target.readyState === 4 && e.target.status === 200) {
-        const data = JSON.parse(e.target.responseText);
-        // console.log(data);
-        resolve(data.puzzle);
-        // return data; // Won't work - returning from the wrong function
-        // return return's from the function are currently in
-        // this code is not directly inside getPuzzle
-      } else if (e.target.readyState === 4) {
-        reject("An Error has Taken place");
-      }
-    });
-    request.open("GET", `http://puzzle.mead.io/puzzle?wordCount=${wordCount}`);
-    request.send();
+  request.addEventListener("readystatechange", (e) => {
+    if (e.target.readyState === 4 && e.target.status === 200) {
+      const data = JSON.parse(e.target.responseText);
+      // console.log(data);
+      callback(undefined, data.puzzle);
+      // return data; // Won't work - returning from the wrong function
+      // return return's from the function are currently in
+      // this code is not directly inside getPuzzle
+    } else if (e.target.readyState === 4) {
+      callback("An Error has Taken place");
+    }
   });
+  request.open("GET", `http://puzzle.mead.io/puzzle?wordCount=${wordCount}`);
+  request.send();
+};
 
 // ===============================================================
 

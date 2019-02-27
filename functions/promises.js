@@ -18,13 +18,17 @@ getDataCallback((err, data) => {
 });
 
 // Promise
-const myPromise = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    //resolve("this is the promise data!");
-    reject("this is the promise error");
-    reject("this is the promise error");
-  }, 2000);
-});
+const getDataPromise = (data) =>
+  new Promise((resolve, reject) => {
+    // resolve and rejects are both functions themselves
+    setTimeout(() => {
+      resolve(`this is my success data: ${data}`);
+      //   reject("this is the promise error");
+      //   reject("this is the promise error");
+    }, 2000);
+  });
+
+const myPromise = getDataPromise(123);
 
 // what to do when have the information
 // then function gets called when the promise resolves i.e. when things went well
