@@ -32,7 +32,7 @@ const getDataPromise = (num) =>
     }, 2000);
   });
 
-const myPromise = getDataPromise(123);
+// const myPromise = getDataPromise(123);
 
 getDataPromise(2).then(
   (data) => {
@@ -50,12 +50,18 @@ getDataPromise(2).then(
   }
 );
 
-getDataPromise(10)
+getDataPromise("10")
+  .then((data) => {
+    return getDataPromise(data);
+  })
   .then((data) => {
     return getDataPromise(data);
   })
   .then((data) => {
     console.log(data);
+  })
+  .catch((err) => {
+    console.log(err);
   });
 
 // const getDataPromise = (data) =>

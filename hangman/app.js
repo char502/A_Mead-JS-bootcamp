@@ -21,33 +21,37 @@ window.addEventListener("keypress", (e) => {
 // this code runs before have access to the data so undefined will print before the data prints
 // This is an example of asynchronous execution
 
-//Promise version
-getPuzzle("4").then(
-  (puzzle) => {
-    console.log(puzzle);
-  },
-  (err) => {
-    console.log(`Error: ${err}`);
-  }
-);
+// =====================================================================
 
-// Callback version
-// getPuzzle("4", (error, puzzle) => {
-//   if (error) {
-//     console.log(`Error: ${error}`);
-//   } else {
+// //Promise version
+// getPuzzle("4").then(
+//   (puzzle) => {
 //     console.log(puzzle);
+//   },
+//   (err) => {
+//     console.log(`Error: ${err}`);
 //   }
-// });
+// );
 
-getCountryDetails("GB").then(
-  (name) => {
-    console.log(name);
-  },
-  (err) => {
-    console.log(`Error: ${err}`);
-  }
-);
+// // Callback version
+// // getPuzzle("4", (error, puzzle) => {
+// //   if (error) {
+// //     console.log(`Error: ${error}`);
+// //   } else {
+// //     console.log(puzzle);
+// //   }
+// // });
+
+// getCountryDetails("GB").then(
+//   (name) => {
+//     console.log(name);
+//   },
+//   (err) => {
+//     console.log(`Error: ${err}`);
+//   }
+// );
+
+// =====================================================================
 
 // Callback version
 // getCountryDetails("GB", (error, name) => {
@@ -81,3 +85,25 @@ getCountryDetails("GB").then(
 // countryRequest.open("GET", "http://restcountries.eu/rest/v2/all");
 // countryRequest.send();
 // ==============================================================
+
+// fetch returns a promise
+// can wait for this promise to reolve or reject to do something with the data from our request
+// do not have to worry about readyState, this promise will only resolve or reject once it is ready for us
+// W know the request completed,
+// do not have to figure out if it completed just need to know HOW it completed
+fetch("http://puzzle.mead.io/puzzle", {})
+  .then((response) => {
+    // the first then does the parsing and works out if things went well
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      throw new Error("unable to fetch puzzle"); // just like a try block would cause a catch block to run in a try/catch statement
+      // will then make the catch block run as per the below
+    }
+  })
+  .then((data) => {
+    console.log(data.puzzle);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
