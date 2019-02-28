@@ -49,6 +49,7 @@ getCountryDetails("GB").then(
   }
 );
 
+// Callback version
 // getCountryDetails("GB", (error, name) => {
 //   if (error) {
 //     console.log(error);
