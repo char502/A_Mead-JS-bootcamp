@@ -23,15 +23,14 @@ window.addEventListener("keypress", (e) => {
 
 // =====================================================================
 
-// //Promise version
-// getPuzzle("4").then(
-//   (puzzle) => {
-//     console.log(puzzle);
-//   },
-//   (err) => {
-//     console.log(`Error: ${err}`);
-//   }
-// );
+//Promise version
+getPuzzle("4")
+  .then((puzzle) => {
+    console.log(puzzle);
+  })
+  .catch((err) => {
+    console.log(`Error: ${err}`);
+  });
 
 // // Callback version
 // // getPuzzle("4", (error, puzzle) => {
@@ -42,14 +41,13 @@ window.addEventListener("keypress", (e) => {
 // //   }
 // // });
 
-// getCountryDetails("GB").then(
-//   (name) => {
-//     console.log(name);
-//   },
-//   (err) => {
-//     console.log(`Error: ${err}`);
-//   }
-// );
+getCountryDetails("GB")
+  .then((country) => {
+    console.log(country.name);
+  })
+  .catch((err) => {
+    console.log(`Error: ${err}`);
+  });
 
 // =====================================================================
 
@@ -91,19 +89,19 @@ window.addEventListener("keypress", (e) => {
 // do not have to worry about readyState, this promise will only resolve or reject once it is ready for us
 // W know the request completed,
 // do not have to figure out if it completed just need to know HOW it completed
-fetch("http://puzzle.mead.io/puzzle", {})
-  .then((response) => {
-    // the first then does the parsing and works out if things went well
-    if (response.status === 200) {
-      return response.json();
-    } else {
-      throw new Error("unable to fetch puzzle"); // just like a try block would cause a catch block to run in a try/catch statement
-      // will then make the catch block run as per the below
-    }
-  })
-  .then((data) => {
-    console.log(data.puzzle);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+// fetch("http://puzzle.mead.io/puzzle", {})
+//   .then((response) => {
+//     // the first then does the parsing and works out if things went well
+//     if (response.status === 200) {
+//       return response.json();
+//     } else {
+//       throw new Error("unable to fetch puzzle"); // just like a try block would cause a catch block to run in a try/catch statement
+//       // will then make the catch block run as per the below
+//     }
+//   })
+//   .then((data) => {
+//     console.log(data.puzzle);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
