@@ -9,6 +9,23 @@
 // The reason they are at the end is you don't know how fast the response will occur.  The ability to handle the response needs to be defined before you make the request incase it is almost an instantaneous response.  My understanding from the docs is open could be called before the eventListener without issue but you definitely want send() to be the last call as that will begin the server interaction.
 // =====================================================================================================
 
+// using promises
+const getPuzzleOld = (wordCount) => {
+  return fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`)
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      } else {
+        throw new Error("unable to fetch puzzle");
+      }
+    })
+    .then((data) => {
+      return data.puzzle;
+    });
+};
+
+// =======================================================================
+
 const getPuzzle = (wordCount, callback) => {
   const request = new XMLHttpRequest();
 
@@ -47,6 +64,70 @@ const getPuzzle = (wordCount, callback) => {
 // });
 
 // ===============================================================
+// ===============================================================
+
+// get country details using fetch
+// const getCountryDetails = (countryCode) => {
+//   return fetch(`http://restcountries.eu/rest/v2/all`)
+//     .then((response) => {
+//       if (response.status === 200) {
+//         return response.json();
+//       } else {
+//         throw new Error("cannot get country data");
+//       }
+//     })
+//     .then((data) => {
+//       return data.find((country) => country.alpha2Code === countryCode);
+//       // console.log(name.name);
+//       // return name.name;
+//     });
+// };
+
+// const getCountryDetails = (countryCode) => {
+//   return fetch(`http://restcountries.eu/rest/v2/all`)
+//     .then((response) => {
+//       if (response.status === 200) {
+//         return response.json();
+//       } else {
+//         throw new Error("cannot get country data");
+//       }
+//     })
+//     .then((data) => {
+//       return data.find((country) => country.alpha2Code === countryCode);
+//       // console.log(name.name);
+//       // return name.name;
+//     });
+// };
+
+// ==========================================================================
+
+// Get country details using promises
+//   return fetch("http://ipinfo.io/json?token=f1f188b77e5c66")
+//     .then((response) => {
+//       if (response.status === 200) {
+//         return response.json();
+//       } else {
+//         throw new Error("cannot get data");
+//       }
+//     })
+//     .then((data) => {
+//       return data;
+//     });
+// };
+
+// const getLocation = () => {
+//   return fetch("http://ipinfo.io/json?token=f1f188b77e5c66")
+//     .then((response) => {
+//       if (response.status === 200) {
+//         return response.json();
+//       } else {
+//         throw new Error("cannot get data");
+//       }
+//     })
+//     .then((data) => {
+//       return data;
+//     });
+// };
 
 // Country code example
 // const countryCode = "LB";

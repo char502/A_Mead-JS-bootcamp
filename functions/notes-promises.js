@@ -35,6 +35,7 @@ const myPromise = getDataPromise(123);
 // what to do when have the information
 // then function gets called when the promise resolves i.e. when things went well
 // get access to the data via the first argument
+// attach then to access the value coming back from the promise
 
 //=================================================================
 // With promises it's impossible to run more than one each of these functions

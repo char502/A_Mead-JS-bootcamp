@@ -49,6 +49,58 @@ getCountryDetails("GB")
     console.log(`Error: ${err}`);
   });
 
+// getCountryDetails("GB")
+//   .then((country) => {
+//     console.log(country.name);
+//   })
+//   .catch((err) => {
+//     console.log(`Error: ${err}`);
+//   });
+
+// getLocation()
+//   .then((data) => {
+//     console.log(`living in ${data.city}, in ${data.region}, ${data.country}`);
+//   })
+//   .catch((err) => {
+//     console.log(`Error: ${err}`);
+//   });
+
+//======================================================================
+
+// getCurrentCountry()
+//   .then((country) => {
+//     console.log(country.name);
+//   })
+//   .catch((err) => {
+//     console.log(`Error: ${err}`);
+//   });
+
+// getLocation()
+//   .then((location) => {
+//     return getCountryDetails(location.country);
+//     // console.log(`living in ${data.city}, in ${data.region}, ${data.country}`);
+//   })
+//   .then((country) => {
+//     console.log(country.name);
+//   })
+//   .catch((err) => {
+//     console.log(`Error: ${err}`);
+//   });
+
+// getDataPromise(10)
+//   .then((data) => {
+//     return getDataPromise(data);
+//   })
+//   .then((data) => {
+//     return "this is some test data";
+//   })
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+
 // =====================================================================
 
 // Callback version
