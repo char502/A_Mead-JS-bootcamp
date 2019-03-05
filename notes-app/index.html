@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <head> </head>
+  <head>
+    <link href="/styles/styles.css" rel="stylesheet" />
+  </head>
   <body>
-    <h1>Notes App</h1>
-    <h2>Take notes and never forget</h2>
+    <div class="header">
+      <div class="container">
+        <h1 class="header__title">Notes App</h1>
+        <h2 class="header__subtitle">Take notes and never forget</h2>
+      </div>
+    </div>
+
     <input id="search-text" type="text" placeholder="Filter notes" />
     <select id="filter-by">
       <option value="byEdited">Sort by last edited</option>
@@ -15,10 +22,10 @@
     <p>This is the editing page <a href="/edit.html">Link</a></p>
 
     <!-- <button id="remove-all">Remove All Notes</button> -->
-    <script src="UUIDV4.js"></script>
+    <script src="/scripts/UUIDV4.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment-with-locales.min.js"></script>
-    <script src="notes-functions.js"></script>
-    <script src="notes-app.js"></script>
+    <script src="/scripts/notes-functions.js"></script>
+    <script src="/scripts/notes-app.js"></script>
 
     <!-- The order of js scripts is important - things have to exist before they are called -->
   </body>
