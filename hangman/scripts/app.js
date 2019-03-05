@@ -18,13 +18,19 @@ window.addEventListener("keypress", (e) => {
 });
 
 const render = () => {
-  gameEl.textContent = game1.puzzle;
+  gameEl.innerHTML = "";
   guessesEl.textContent = game1.statusMessage;
+
+  game1.puzzle.split("").forEach((letter) => {
+    const puzzleLetter = document.createElement("span");
+    puzzleLetter.textContent = letter;
+    gameEl.appendChild(puzzleLetter);
+  });
 };
 
 const startGame = async () => {
   const puzzle = await getPuzzle("2");
-  game1 = new Hangman(puzzle, 5);
+  game1 = new Hangman(puzzle, 11);
   render();
 };
 
