@@ -1,4 +1,4 @@
-"use strict";
+// "use strict";
 
 const titleElement = document.querySelector("#note-title");
 const dateElement = document.querySelector("#last-edited");
