@@ -1,21 +1,22 @@
 /*
-BEM (block, element, modifier)
 
-Block     -> house
-Element   -> house__kitchen
-Modifier  -> house--condo
-
-*/
-
-/* Use  
-
-Element.classList
-
-to insert css alongside an element created within javascript
-
+// Colors
+$off-black: #20222b;
+$dark-blue: #333745;
+$blue: #3c4251;
+$light-blue: #464b5e;
+$off-white: #a5afd7;
+$purple: #8357c5;
+// Spacing
+$s-size: 1.2rem;
+$m-size: 1.6rem;
+$l-size: 3.2rem;
+$xl-size: 4.8rem;
+$desktop-breakpoint: 45rem;
 */
 
 /* Base Styles */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -27,7 +28,8 @@ html {
 }
 
 body {
-  color: #333333;
+  background: #2b292e;
+  color: #fafafa;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1.6rem;
 }
@@ -37,7 +39,7 @@ button {
 }
 
 a {
-  color: #396684;
+  color: #6f439c;
 }
 
 /* Container */
@@ -51,7 +53,7 @@ a {
 /* Header */
 
 .header {
-  background: #43799c;
+  background: #6f439c;
   color: white;
   padding: 1.6rem 0;
 }
@@ -62,6 +64,7 @@ a {
 }
 
 .header__subtitle {
+  /* color: #777; */
   font-size: 1.6rem;
   font-weight: 300;
 }
@@ -69,9 +72,10 @@ a {
 /* Actions Bar */
 
 .actions {
-  background-color: #f7f7f7;
-  border-bottom: 1px solid #dedfe0;
-  padding: 0.8rem;
+  background-color: #353239;
+  /* border-bottom: 1px solid #dedfe0; */
+  /* color: #333333; */
+  padding: 1rem;
 }
 
 .actions__container {
@@ -90,38 +94,36 @@ a {
 /* Form Inputs */
 
 .input {
-  border: 1px solid #dedfe0;
-  border-radius: 5px;
+  border: none;
   font-size: 1.4rem;
   font-weight: 300;
   height: 3rem;
-  margin-right: 0.8rem;
+  margin-right: 1.6rem;
   padding: 0.4rem 0.8rem;
 }
 
-.dropdown {
-  border-radius: 0;
-  border: 1px solid #dedfe0;
-  background: white;
-  font-size: 1.4rem;
-  font-weight: 300;
-  height: 3rem;
-  margin-right: 0.8rem;
+.checkbox {
+  display: flex;
+  align-items: baseline;
+}
+
+.checkbox > input {
+  margin-right: 0.4rem;
 }
 
 .button {
-  background: #43799c;
+  background: #7044a0;
   border: none;
-  border-bottom: 2px solid #396684;
+  border-bottom: 2px solid #603a88;
   color: white;
   font-size: 1.4rem;
   font-weight: 300;
   padding: 0.8rem;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .button:hover {
-  background: #396684;
+  background: #5f3a87;
 }
 
 .button--secondary {
@@ -131,6 +133,18 @@ a {
 
 .button--secondary:hover {
   background: #6e6e6e;
+}
+
+.button--text {
+  background: none;
+  border: none;
+  color: #aaa;
+}
+
+.button--text:hover {
+  background: none;
+  color: white;
+  text-decoration: underline;
 }
 
 /* Note editor */
@@ -161,17 +175,32 @@ a {
 
 .list-item {
   text-decoration: none;
-  color: #333333;
-  background: #f7f7f7;
-  border: 1px solid #dedfe0;
+  color: #fafafa;
+  cursor: pointer;
+  background: #353239;
+  border: 1px solid #423e47;
   margin: 1.6rem 0;
-  padding: 1.6rem;
+  padding: 1rem 1.6rem;
   display: block;
   transition: background 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-item__container {
+  display: flex;
+  font-size: 1.8rem;
+  font-weight: 300;
+  align-items: baseline;
+}
+
+.list-item__container > *:first-child {
+  margin-right: 0.8rem;
 }
 
 .list-item:hover {
-  background: #eeeeee;
+  background: #3d3941;
 }
 
 .list-item__title {
@@ -186,7 +215,10 @@ a {
   font-style: italic;
 }
 
+.list-title {
+  margin: 3.2rem 0 1.6rem;
+}
+
 .empty-message {
-  text-align: center;
   margin: 3.2rem 0;
 }

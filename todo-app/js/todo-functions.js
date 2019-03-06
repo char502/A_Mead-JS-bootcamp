@@ -18,6 +18,8 @@ const saveTodos = (todos) => {
 
 // render application todos based on filters
 const renderTodos = (todos, filters) => {
+  const todoEl = document.querySelector("#searched-todos");
+
   const filteredSearch = todos.filter((todo) => {
     const searchTextMatch = todo.text
       .toLowerCase()
@@ -38,17 +40,20 @@ const renderTodos = (todos, filters) => {
 
   const todosToComplete = filteredSearch.filter((todo) => !todo.completed);
 
-  document.querySelector("#searched-todos").innerHTML = "";
+  todoEl.innerHTML = "";
 
-  document
-    .querySelector("#searched-todos")
-    .appendChild(generateSummaryDOM(todosToComplete));
+  todoEl.appendChild(generateSummaryDOM(todosToComplete));
 
-  filteredSearch.forEach((todo) => {
-    document
-      .querySelector("#searched-todos")
-      .appendChild(generateTodoDOM(todo));
-  });
+  if (filteredSearch.length > 0) {
+    filteredSearch.forEach((todo) => {
+      todoEl.appendChild(generateTodoDOM(todo));
+    });
+  } else {
+    const noTodos = document.createElement("p");
+    noTodos.classList.add("empty-message");
+    noTodos.textContent = "There are no todos to display";
+    todoEl.appendChild(noTodos);
+  }
 };
 
 // Delete item from list on clicking the 'x' button
@@ -76,7 +81,8 @@ const toggleTodo = (id) => {
 
 // Get the DOM elements for an individual note
 const generateTodoDOM = (todo) => {
-  const divEl = document.createElement("div");
+  const divEl = document.createElement("label");
+  const containerEl = document.createElement("div");
   const checkbox = document.createElement("input");
   const todoItem = document.createElement("span");
   const removeButton = document.createElement("button");
@@ -85,7 +91,8 @@ const generateTodoDOM = (todo) => {
   checkbox.setAttribute("type", "checkbox");
   //sets the checkbox to true/false based on whether todo.completed is true/false
   checkbox.checked = todo.completed; // this caught me out!!
-  divEl.appendChild(checkbox);
+
+  containerEl.appendChild(checkbox);
   // toggles the completed property of a todo from true to false
   checkbox.addEventListener("change", () => {
     toggleTodo(todo.id);
@@ -95,13 +102,19 @@ const generateTodoDOM = (todo) => {
 
   // Setup the todo text
   todoItem.textContent = todo.text;
-  divEl.appendChild(todoItem);
+  containerEl.appendChild(todoItem);
 
   // Setup the remove button
-  removeButton.textContent = "x";
-  divEl.appendChild(removeButton);
 
-  // Steps tp run when 'x' is clicked
+  // Setup container
+  divEl.classList.add("list-item");
+  containerEl.classList.add("list-item__container");
+  divEl.appendChild(containerEl);
+
+  // Setup the remove button
+  removeButton.textContent = "remove";
+  removeButton.classList.add("button", "button--text");
+  divEl.appendChild(removeButton);
   removeButton.addEventListener("click", () => {
     deleteButton(todo.id);
     saveTodos(todos);
@@ -114,8 +127,13 @@ const generateTodoDOM = (todo) => {
 // Get the DOM elements for list summary
 const generateSummaryDOM = (todosToComplete) => {
   const displayNotComplete = document.createElement("h2");
+  displayNotComplete.classList.add("list-title");
+
+  const plural = todosToComplete.length === 1 ? "" : "s";
+
   displayNotComplete.textContent = `You have ${
     todosToComplete.length
-  } todos left to complete`;
+  } todo${plural} left to complete`;
+
   return displayNotComplete;
 };

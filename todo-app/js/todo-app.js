@@ -12,15 +12,18 @@ renderTodos(todos, filters);
 // add todo input box
 document.querySelector("#add-todo-form").addEventListener("submit", (e) => {
   e.preventDefault();
-  const addedTodo = e.target.elements.addTodo.value;
-  todos.push({
-    id: uuidv4(),
-    text: addedTodo,
-    completed: false
-  });
-  saveTodos(todos);
-  renderTodos(todos, filters);
-  e.target.elements.addTodo.value = "";
+  const addedTodo = e.target.elements.addTodo.value.trim();
+
+  if (addedTodo.length > 0) {
+    todos.push({
+      id: uuidv4(),
+      text: addedTodo,
+      completed: false
+    });
+    saveTodos(todos);
+    renderTodos(todos, filters);
+    e.target.elements.addTodo.value = "";
+  }
 });
 
 // Input for search/filter box
