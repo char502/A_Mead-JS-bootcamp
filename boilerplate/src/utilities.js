@@ -1,3 +1,5 @@
 console.log("utilities.js");
 
-const add = (a, b) => a + b;
+export const add = (a, b) => a + b;
+
+export const name = "Charlotte test123";
