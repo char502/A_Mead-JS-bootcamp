@@ -11,7 +11,7 @@
 
 const add = (a, b) => a + b; // named export
 
-const name = "Charlotte test123"; // named export
+const name = "something else again"; // named export
 
 const square = (x) => x * x;
 

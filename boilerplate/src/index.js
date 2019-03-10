@@ -26,7 +26,7 @@ import screamExample from "./scream";
 
 console.log("index.js");
 
-console.log(add(3, 4));
+console.log(add(20, 5));
 
 console.log(name);
 

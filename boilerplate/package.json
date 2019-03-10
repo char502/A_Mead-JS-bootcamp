@@ -4,9 +4,7 @@
   "description": "",
   "main": "input.js",
   "scripts": {
-    "serve": "live-server public",
-    "webpack": "webpack",
-    "build": "babel src/index.js -o public/scripts/bundle.js --presets env --watch"
+    "dev-server": "webpack-dev-server"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +17,7 @@
     "babel-preset-env": "^1.6.1",
     "live-server": "^1.2.1",
     "webpack": "^4.29.6",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1"
   }
 }
