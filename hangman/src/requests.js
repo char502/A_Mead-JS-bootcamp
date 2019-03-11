@@ -12,6 +12,8 @@ const getPuzzle = async (wordCount) => {
   }
 };
 
+export { getPuzzle as default };
+
 // ===============================================================
 
 // Country code example

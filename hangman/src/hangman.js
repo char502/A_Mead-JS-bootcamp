@@ -67,3 +67,5 @@ class Hangman {
     // this.statusMessage();
   }
 }
+
+export { Hangman as default };
