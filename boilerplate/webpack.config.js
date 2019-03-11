@@ -24,7 +24,8 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, "public"),
     publicPath: "/scripts/"
-  }
+  },
+  devtool: "source-map"
 };
 
 // provides the absolute path to the route of your project
