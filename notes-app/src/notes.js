@@ -11,6 +11,12 @@ const loadNotes = () => {
   }
 };
 
+// save the notes to localStorage
+const saveNotes = () => {
+  localStorage.setItem("notes", JSON.stringify(notes));
+  // notes.updatedAt = timeStamp;
+};
+
 // Expose notes from module
 const getNotes = () => notes;
 
@@ -24,8 +30,80 @@ const createNote = () => {
     createdAt: timeStamp,
     updatedAt: timeStamp
   });
+  saveNotes();
+  return id;
+};
+
+// Remove a note from the list
+const removeNote = (id) => {
+  const noteIndex = notes.findIndex((note) => note.id === id);
+
+  if (noteIndex > -1) {
+    notes.splice(noteIndex, 1);
+    saveNotes();
+  }
+};
+
+const sortNotes = (sortBy) => {
+  if (sortBy === "byEdited") {
+    // console.log("byCreated selected");
+    return notes.sort((a, b) => {
+      if (a.updatedAt > b.updatedAt) {
+        return -1;
+      } else if (a.updatedAt < b.updatedAt) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+  } else if (sortBy === "byCreated") {
+    // console.log("byCreated selected");
+    return notes.sort((a, b) => {
+      if (a.createdAt > b.createdAt) {
+        return -1;
+      } else if (a.createdAt < b.createdAt) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+  } else if (sortBy === "alphabetical") {
+    // console.log("alphabetical selected");
+    // a comes before b (so is a < b)
+    return notes.sort((a, b) => {
+      if (a.title.toLowerCase() < b.title.toLowerCase()) {
+        return -1;
+      } else if (b.title.toLowerCase() > a.title.toLowerCase()) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+  } else {
+    return notes;
+  }
+};
+
+const updateNote = (id, updates) => {
+  const note = notes.find((note) => note.id === id);
+
+  if (!note) {
+    return;
+  }
+
+  if (typeof updates.title === "string") {
+    note.title = updates.title;
+    note.updatedAt = moment().valueOf();
+  }
+
+  if (typeof updates.body === "string") {
+    note.body = updates.body;
+    note.updatedAt = moment().valueOf();
+  }
+  saveNotes();
+  return note;
 };
 
 notes = loadNotes();
 
-export { getNotes, createNote };
+export { getNotes, createNote, removeNote, sortNotes, updateNote };
