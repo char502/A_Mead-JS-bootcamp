@@ -1,4 +1,7 @@
 boilerplate/node_modules/
-hangman/node_modules/
+
 boilerplate/package-lock.json/
+hangman/node_modules/
+notes-app/node_modules/
+
 public/dist/
