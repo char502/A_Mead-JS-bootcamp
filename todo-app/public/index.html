@@ -38,6 +38,14 @@
           placeholder="Add todo"
           name="addTodo"
         />
+        <!-- 
+          - name Attribute = something put on your fields when they are inside a form 
+          - this makes it easy to access those field values when the form gets submitted
+          - e.target - gets us to the DOM element
+          - e.target.elements - allows dev to access all the field set up on form
+          - e.target.elements.addTdo - allows access to element by it's name (as defined in the HTML)
+          - e.target.elements.addTodo.value (getting the value from the input as typed in by the user)
+        -->
         <button class="button">Add Todo</button>
       </form>
     </div>
