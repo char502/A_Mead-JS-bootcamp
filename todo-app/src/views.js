@@ -1,11 +1,11 @@
 // Make sure to set up the exports
 import { getTodos, toggleTodo, removeTodo } from "./todos";
-import { getFilters, setFilters } from "./filters";
+import { getFilters } from "./filters";
 
 const renderTodos = () => {
   const todoEl = document.querySelector("#searched-todos");
 
-  let filters = getFilters();
+  const filters = getFilters();
 
   const filteredSearch = getTodos().filter((todo) => {
     const searchTextMatch = todo.text

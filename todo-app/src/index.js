@@ -1,8 +1,8 @@
 // Bonus: Add a watcher for local storage
 
-import { renderTodos, generateTodoDOM, generateSummaryDOM } from "./views.js";
+import { renderTodos } from "./views";
 import { setFilters } from "./filters";
-import { createTodo } from "./todos";
+import { createTodo, loadTodos } from "./todos";
 
 renderTodos();
 
@@ -16,13 +16,13 @@ document.querySelector("#search-text").addEventListener("input", (e) => {
 
 // add todo input box
 document.querySelector("#add-todo-form").addEventListener("submit", (e) => {
+  const text = e.target.elements.text.value.trim();
   e.preventDefault();
-  const text = e.target.elements.addTodo.value.trim();
 
   if (text.length > 0) {
     createTodo(text);
     renderTodos();
-    e.target.elements.addTodo.value = "";
+    e.target.elements.text.value = "";
   }
 });
 
@@ -32,4 +32,11 @@ document.querySelector("#hide-completed").addEventListener("change", (e) => {
     hideCompleted: e.target.checked
   });
   renderTodos();
+});
+
+window.addEventListener("storage", (e) => {
+  if (e.key === "todos") {
+    loadTodos();
+    renderTodos();
+  }
 });

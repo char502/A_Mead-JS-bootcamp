@@ -27,7 +27,7 @@ const createTodo = (text) => {
     text: text,
     completed: false
   });
-  saveTodos(todos);
+  saveTodos();
 };
 
 // Delete item from list on clicking the 'x' button
@@ -35,7 +35,7 @@ const removeTodo = (id) => {
   const todoIndex = todos.findIndex((todo) => todo.id === id);
   if (todoIndex > -1) {
     todos.splice(todoIndex, 1);
-    saveTodos(todos);
+    saveTodos();
   }
 };
 
@@ -44,10 +44,10 @@ const toggleTodo = (id) => {
   let todoUUID = todos.find((todo) => todo.id === id);
   if (todoUUID) {
     todoUUID.completed = !todoUUID.completed;
-    saveTodos(todos);
+    saveTodos();
   }
 };
 
 loadTodos();
 
-export { getTodos, createTodo, removeTodo, toggleTodo };
+export { loadTodos, getTodos, createTodo, removeTodo, toggleTodo };
